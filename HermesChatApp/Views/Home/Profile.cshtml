@@ -1,0 +1,33 @@
+﻿@model UserModel
+@{
+    ViewData["Title"] = "Profile";
+
+    var message = TempData["ResetPassword"];
+}
+
+<div class="text-center">
+    <h1 class="display-4">User Profile</h1>
+</div>
+<div class="text-center">
+    <h6 style="color: green"><b>@message</b></h6> 
+</div>
+<div class="row">
+    <h4>User </h4>
+        <dl class="row">
+            <dt class = "col-sm-2">
+                        @Html.DisplayNameFor(model => model.Username)
+            </dt>
+            <dd class = "col-sm-10">
+                        @Html.DisplayFor(model => model.Username)
+            </dd>
+            <dt class = "col-sm-2">
+                        @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd class = "col-sm-10">
+                        @Html.DisplayFor(model => model.Email)
+            </dd>
+        </dl>
+    <div class="footer-links">
+            @Html.ActionLink("Change Password", "ResetPassword")
+    </div>
+</div>

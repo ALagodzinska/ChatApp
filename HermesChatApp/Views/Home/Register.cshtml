@@ -1,0 +1,86 @@
+﻿@{
+    ViewData["Title"] = "Register";
+    var messageRegister = TempData["SuccessfulRegister"];
+    TempData.Keep("SuccessfulRegister");
+}
+@section Scripts
+{
+<script src="~/js/passwordValidation.js"></script>
+}
+@model UserModel
+
+@Html.AntiForgeryToken()
+<div class="text-center">
+    <h1 class="display-4">Welcome To Hermes Chat Application!</h1>
+    <h4>Please enter your personal details to Register on Hermes</h4>
+</div>
+<br />
+<div class="text-center">
+    <h5 style="color: red"><b>@ViewBag.error</b></h5>
+</div>
+<div class="container">
+    <div class="d-flex justify-content-center h-100">
+        <div class="card">
+            <div class="card-header">
+                <h3>Register</h3>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly"></div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input asp-for="Username" placeholder="Username" class="form-control" />
+                        <span asp-validation-for="Username" class="text-warning"></span>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                        </div>
+                        <input asp-for="Email" placeholder="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-warning"></span>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-key fa-spin"></i></span>
+                        </div>
+                        <input asp-for="Password" placeholder="Password" type="password" class="form-control" id="new1Password" />
+                        <span asp-validation-for="Password" class="text-warning"></span>
+                        <div id="pswd_info" class="pswd-security">
+                            <h4>Password must meet the following requirements:</h4>
+                            <ul>
+                                <li id="letter" class="invalid">At least <strong>one lowercase character</strong></li>
+                                <li id="capital" class="invalid">At least <strong>one uppercase character</strong></li>
+                                <li id="number" class="invalid">At least <strong>one number</strong></li>
+                                <li id="length" class="invalid">Be at least <strong>8 characters</strong></li>
+                                <li id="special" class="invalid">At least <strong>one special character</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-key fa-spin"></i></span>
+                        </div>
+                        <input asp-for="ConfirmPassword" placeholder="Confirm your password" type="password" class="form-control" id="new2Password" />
+                        <span asp-validation-for="ConfirmPassword" class="text-warning"></span>
+                        <div id="pswd_equal" class="pswd-security">
+                            <ul>
+                                <li id="match" class="invalid"></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Register" class="btn float-left login_btn" />
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <div class="d-flex justify-content-center footer-links">
+                    @Html.ActionLink("Already have an account? Login", "Index")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
